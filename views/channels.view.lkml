@@ -41,7 +41,7 @@ view: channels {
       select weekday as weekday,
       cast(date as timestamp) as date,
       null as impression,
-      null as clicks,
+      clicks as clicks,
       null as BounceRate,
       conversions as conversions,
       revenue as Revenue,
@@ -201,15 +201,11 @@ view: channels {
     sql: ${TABLE}.weekday ;;
   }
 
- dimension: date {
-  type: date
-  sql: ${TABLE}.date ;;
-}
-dimension_group: created_at {
-  type: time
-  timeframes: [raw,date,week,month,year,day_of_week,day_of_month,day_of_year]
-  sql: ${TABLE}.date ;;
-}
+  dimension: date {
+    type: date
+    sql: ${TABLE}.date ;;
+  }
+
   dimension: impression {
     type: number
     sql: ${TABLE}.impression ;;
